@@ -27,6 +27,7 @@ namespace WebApplicationTest
             Configuration.Bind("ConnectionStrings", new Config());
 
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IMessageRepository, MessageRepository>();
             services.AddTransient<DataManager>();
 
             services.AddControllersWithViews();

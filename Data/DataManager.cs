@@ -5,9 +5,11 @@ namespace WebApplicationTest.Data
     public class DataManager
     {
         public IUserRepository Users { get; set; }
-        public DataManager(IUserRepository userRepository)
+        public IMessageRepository Messages { get; set; }
+        public DataManager(IUserRepository userRepository, IMessageRepository messageRepository)
         {
             Users = userRepository;
+            Messages = messageRepository;
         }
 
     }

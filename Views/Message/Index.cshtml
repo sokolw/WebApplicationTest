@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Message>
+@{
+    ViewData["Title"] = "Messages";
+}
+
+<h1 class="display-3">Messages</h1>
+
+<a asp-area="" asp-controller="Message" asp-action="Create" class="btn btn-primary">Create New</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Text</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Date</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Any())
+        {
+            @foreach(Message message in Model)
+            {
+                <tr scope="row">
+                    <td>@message.Text</td>
+                    <td>@message.Email</td>
+                    <td>@message.Phone</td>
+                    <td>@message.Date</td>
+                    <td>
+                        <a asp-area="" asp-controller="Message" asp-action="Edit" asp-route-id="@message.Id" class="btn btn-primary">Edit</a>
+                        <a asp-area="" asp-controller="Message" asp-action="Details" asp-route-id="@message.Id" class="btn btn-primary">Details</a>
+                        <a asp-area="" asp-controller="Message" asp-action="Delete" asp-route-id="@message.Id" class="btn btn-primary">Delete</a>
+                    </td>
+                </tr>
+             }
+        }
+        else
+        {
+            <tr scope="row">
+                <td colspan="5">No data</td>
+            </tr>
+        }  
+    </tbody>
+</table>
