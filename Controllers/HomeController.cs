@@ -6,40 +6,21 @@ using Microsoft.Data;
 using Microsoft.Extensions.Configuration;
 using System.Data;
 using Microsoft.Data.SqlClient;
+using WebApplicationTest.Data;
 
 namespace WebApplicationTest.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        private readonly IConfiguration _config;
-        public HomeController(ILogger<HomeController> logger, IConfiguration config)
+        private readonly DataManager dataManager;
+        public HomeController(DataManager dataManager)
         {
-            _logger = logger;
-            _config = config;
-        }
-
-        public IDbConnection Connection
-        {
-            get
-            {
-                return new SqlConnection(_config.GetConnectionString("DefaultConnection"));
-            }
-        }
-
-        private List<User> GetAllUsers()
-        {
-            using (IDbConnection db = Connection)
-            {
-                var result = db.Query<User>("SELECT * FROM Users").ToList();
-                return result;
-            }
+            this.dataManager = dataManager;
         }
 
         public IActionResult Index()
         {
-            var items = GetAllUsers();
-            return View(items);
+            return View(dataManager.Users.GetUsers());
         }
 
         public IActionResult Privacy()

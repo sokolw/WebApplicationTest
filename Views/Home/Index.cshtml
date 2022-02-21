@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<User>
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -23,20 +24,20 @@
                 <p>Дата регистрации</p>
             </td>
         </tr>
-        @foreach (var item in Model)
+        @foreach (User user in Model)
         {
         <tr>
             <td>
-                <p>@item.Id</p>
+                <p>@user.Id</p>
             </td>
             <td>
-                <p>@item.Name</p>
+                <p>@user.Name</p>
             </td>
             <td>
-                <p>@item.Balance</p>
+                <p>@user.Balance</p>
             </td>
             <td>
-                <p>@item.Created</p>
+                <p>@user.Created</p>
             </td>
         </tr>
         }
